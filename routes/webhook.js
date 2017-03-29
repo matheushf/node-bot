@@ -1,4 +1,7 @@
-app.get('/webhook', function (req, res) {
+var express = require('express');
+var router = express.Router();
+
+router.get('/webhook', function (req, res) {
     if (req.query['hub.mode'] === 'subscribe' &&
         req.query['hub.verify_token'] === 'node-bot-verify-token') {
         console.log("Validating webhook");
@@ -8,3 +11,5 @@ app.get('/webhook', function (req, res) {
         res.sendStatus(403);
     }
 });
+
+module.exports = router;
