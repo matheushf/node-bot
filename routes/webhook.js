@@ -18,6 +18,8 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res) {
     var data = req.body;
 
+    console.log(req);
+
     if (data.object === 'page') {
 
         // Iterate over each entry - there may be multiple if batched
