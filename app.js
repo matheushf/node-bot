@@ -31,7 +31,21 @@ app.use(express.static(path.join(__dirname, 'public')));*/
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/webhook', webhook);
+// app.use('/webhook', webhook);
+
+app.get('/webhook', function (req, res, next) {
+    console.log('aqui porra');
+    console.log(req.query);
+
+    if (req.query['hub.mode'] === 'subscribe' &&
+        req.query['hub.verify_token'] === "node-bot-verify-token") {
+        console.log("Validating webhook");
+        res.status(200).send(req.query['hub.challenge']);
+    } else {
+        console.log("Failed validation. Make sure the validation tokens match.");
+        res.sendStatus(403);
+    }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
