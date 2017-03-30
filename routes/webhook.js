@@ -4,8 +4,6 @@ var router = express.Router();
 PAGE_ACCESS_TOKEN = "EAAW89KxFmKkBAIHO2TvOZBU1VG52ZCTe2iIKkKQYW3U7dBW2DQNl1FYifRk8RkZCyZARmLSdLQoCOSAcBUixnvZA2ZAvFfkKTgEeI1GCPjQpb5W41CVel53LBvty2jcmZAZCNagBuS915EZCwkab3GG4LS7oCZCijZCYpe7mZCfZB467EVAZDZD";
 
 router.get('/', function (req, res, next) {
-    console.log(req);
-
     if (req.query['hub.mode'] === 'subscribe' &&
         req.query['hub.verify_token'] === "node-bot-verify-token") {
         console.log("Validating webhook");
